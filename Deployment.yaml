@@ -23,6 +23,6 @@ spec:
         env:
           - name: dDB-PORT
             valueFrom:
-              configMapRef:
+              configMapKeyRef:
                 name: test-configmap
                 key: db-port
