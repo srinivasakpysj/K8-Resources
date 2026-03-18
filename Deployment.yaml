@@ -20,9 +20,12 @@ spec:
       containers:
       - name: nginx-app
         image: nginx
-        env:
-          - name: DB-PORT
-            valueFrom:
-              configMapKeyRef:
-                name: test-configmap
-                key: db-port
+        volumeMounts:
+        - name: db-connection
+          mountPath: /opt
+        ports:
+        - containerPort: 8000
+        volumes:
+        - name: db-connection
+          ConfigMap:
+            name: test-configmap
