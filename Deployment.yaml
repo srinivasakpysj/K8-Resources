@@ -21,7 +21,7 @@ spec:
       - name: nginx-app
         image: nginx
         env:
-          - name: dDB-PORT
+          - name: DB-PORT
             valueFrom:
               configMapKeyRef:
                 name: test-configmap
