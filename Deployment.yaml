@@ -20,3 +20,9 @@ spec:
       containers:
       - name: nginx-app
         image: nginx
+        env:
+          - name: dDB-PORT
+            valueFrom:
+              configMapRef:
+                name: test-configmap
+                key: db-port
