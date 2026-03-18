@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: test-configmap
 data:
-  db-port: "3307"
+  db-port: "3309"
