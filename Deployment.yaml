@@ -26,24 +26,12 @@ spec:
         ports:
         - containerPort: 8000
 
-        env:
-        - name: USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: username
-
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: password
-
         volumeMounts:
-        - mountPath: /opt
-          name: db-connection
+        - mountPath: /etc/secret
+          name: secret-volume
+          readOnly: true
 
       volumes:
-      - name: db-connection
-        configMap:
-          name: test-configmap
+      - name: secret-volume
+        secret:
+          secretName: app-secret
