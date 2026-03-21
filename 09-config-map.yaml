@@ -1,10 +1,12 @@
-apiVersion: v1
-kind: ConfigMap
-metadata: 
-  name: pod-configmap
-data:
- course: "DevSecOps with AWS"
- duration: "120hrs"
- trainer: "Sivakumar"
- Institute: "joindevops"
- Fee: "25000"
+apiVersion: v1                     # Kubernetes core API version (v1 is used for basic resources like ConfigMap, Pod, Service)
+kind: ConfigMap                   # Declares this resource as a ConfigMap (used to store configuration as key-value pairs)
+
+metadata:                         # Metadata section contains identifying information
+  name: pod-configmap             # Name of the ConfigMap (must match the reference used in Pod spec)
+
+data:                             # Data section holds key-value pairs (all values must be strings)
+  course: "DevSecOps with AWS"    # Key: course → Value: DevSecOps with AWS (will be exposed as env variable COURSE)
+  duration: "120hrs"              # Key: duration → Value: 120hrs (env variable DURATION)
+  trainer: "Sivakumar"            # Key: trainer → Value: Sivakumar (env variable TRAINER)
+  Institute: "joindevops"         # Key: Institute → Value: joindevops (env variable INSTITUTE)
+  Fee: "25000"                    # Key: Fee → Value: 25000 (env variable FEE)

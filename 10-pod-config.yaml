@@ -1,11 +1,14 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: config-map-pod
-spec:
-  containers:
-  - name: nginx
-    image: nginx
-    envFrom:
-    - configMapRef:
-        name: pod-configmap
+apiVersion: v1                  # Specifies the Kubernetes API version to use (v1 = core API group)
+kind: Pod                      # Defines the type of Kubernetes resource (Pod = smallest deployable unit)
+
+metadata:                      # Metadata contains identifying information about the object
+  name: config-map-pod         # Name of the Pod (must be unique within the namespace)
+
+spec:                          # Specification section defines the desired state of the Pod
+  containers:                  # List of containers that will run inside this Pod
+  - name: nginx                # Name of the container (used for identification within the Pod)
+    image: nginx               # Docker image to use (pulls official nginx image from Docker Hub)
+
+    envFrom:                   # Allows importing environment variables from external sources
+    - configMapRef:            # Reference to a ConfigMap (used to inject configuration data)
+        name: pod-configmap    # Name of the ConfigMap (must exist in the same namespace)
