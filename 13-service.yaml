@@ -1,0 +1,16 @@
+apiVersion: v1                     # Core Kubernetes API version
+kind: Service                     # Defines a Service (used to expose Pods over network)
+
+metadata:
+  name: nginx                     # Name of the Service (DNS name inside cluster)
+
+spec: 
+  selector:                      # Labels used to identify target Pods
+    project: roboshop           # Must match Pod label: project=roboshop
+    component: frontend         # Must match Pod label: component=frontend
+    environment: dev            # Must match Pod label: environment=dev
+
+  ports:                         # Defines how traffic is exposed
+  - protocol: TCP                # Network protocol (default is TCP)
+    port: 80                     # Service port (clients connect to this port)
+    targetPort: 80               # Port on the Pod/container where traffic is forwarded
