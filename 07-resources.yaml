@@ -1,0 +1,21 @@
+apiVersion: v1                # API version of Kubernetes object (v1 = core API group)
+kind: Pod                    # Defines the type of resource → Pod
+
+metadata:
+  name: resources-demo       # Name of the Pod (must be lowercase RFC 1123 compliant)
+
+spec:                        # Specification of the Pod
+  containers:                # List of containers inside this Pod
+  - name: nginx              # Container name (unique within the Pod)
+    image: nginx             # Container image (pulled from Docker Hub by default)
+
+    resources:               # Resource management section (very important in production)
+
+      requests:              # Minimum resources Kubernetes guarantees to this container
+        memory: "68Mi"       # Pod will be scheduled only if node has at least 68 MiB memory free
+        cpu: "100m"          # 100 millicpu = 0.1 CPU core (NOT "100") ⚠️
+
+      # provide equal or more than requests
+      limits:                # Maximum resources container is allowed to use
+        memory: "100Mi"      # If container exceeds this → it may be OOMKilled
+        cpu: "120m"          # Max CPU = 0.12 core (throttled if exceeds)
