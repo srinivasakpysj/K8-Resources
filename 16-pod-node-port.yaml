@@ -1,0 +1,15 @@
+apiVersion: v1                      # Core Kubernetes API version
+kind: Pod                           # Resource type: Pod (smallest deployable unit)
+
+metadata:
+  name: service-np-demo                # Name of the Pod
+
+  labels:                           # Labels used for identification and selection by Services
+    project: roboshop               # Custom label (must match Service selector)
+    component: frontend             # Custom label (must match Service selector)
+    environment: dev                # Custom label (must match Service selector)
+    purpose: node-port
+spec:
+  containers:                       # MUST be indented under spec (your original had indentation issue)
+  - name: nginx                     # Container name
+    image: nginx                    # Docker image (nginx web server)
