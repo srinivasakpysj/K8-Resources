@@ -1,0 +1,17 @@
+apiVersion: v1                  # Kubernetes core API version
+kind: Pod                      # Resource type → Pod
+
+metadata:
+  name: env-demo               # Name of the Pod (must be lowercase & unique in namespace)
+
+spec:                          # Pod specification starts here
+  containers:                  # List of containers inside the Pod
+  - name: nginx                # Container name (identifier inside the Pod)
+    image: nginx               # Docker image to run (default pulls from Docker Hub)
+
+    env:                       # Environment variables passed into the container
+    - name: course             # Environment variable key
+      value: "Kubernetes"      # Value assigned to 'course' (string recommended with quotes)
+
+    - name: trainer            # Another environment variable key
+      value: "Sivakumar"       # Value assigned to 'trainer'
