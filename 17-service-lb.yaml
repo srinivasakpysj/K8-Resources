@@ -11,10 +11,10 @@ spec:
     project: roboshop               # Must match Pod label
     component: frontend             # Must match Pod label
     environment: dev                # Must match Pod label
-    purpose: node-port              # Pod MUST include this label OR no traffic will route
+    purpose: load-balancer          # Pod MUST include this label OR no traffic will route
 
   ports:
   - protocol: TCP                   # Network protocol
     port: 80                        # Service port (external + cluster access)
     targetPort: 80                  # Container port inside Pod
-    # nodePort: 30007               # Optional: underlying NodePort (auto-assigned if not specified)
+    nodePort: 30007               # Optional: underlying NodePort (auto-assigned if not specified)
