@@ -24,4 +24,4 @@ spec:
     spec:
       containers:
       - name: nginx               # Container name
-        image: nginx:trixie-perl  # Specific nginx image version (Debian trixie + perl support)
+        image: nginx:latest  # Specific nginx image version (Debian trixie + perl support)
