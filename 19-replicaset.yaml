@@ -1,0 +1,27 @@
+apiVersion: apps/v1                # Correct API group for ReplicaSet
+kind: ReplicaSet                  # Ensures a fixed number of Pod replicas are running
+
+metadata:
+  name: nginx                     # Name of the ReplicaSet
+  labels:                         # Labels for identifying the ReplicaSet itself
+    purpose: rs-demo
+    project: roboshop
+
+spec:
+  replicas: 3                     # Desired number of Pods (ReplicaSet maintains this count)
+
+  selector:                       # Defines how ReplicaSet finds the Pods it manages
+    matchLabels:                  # Must EXACTLY match template labels
+      purpose: rs-demo
+      project: roboshop
+
+  template:                       # Blueprint for creating Pods
+    metadata:
+      labels:                     # Labels assigned to Pods created by ReplicaSet
+        purpose: rs-demo          # Must match selector.matchLabels
+        project: roboshop
+
+    spec:
+      containers:                 # Container specification inside each Pod
+      - name: nginx               # Container name
+        image: nginx              # Docker image (nginx web server)
