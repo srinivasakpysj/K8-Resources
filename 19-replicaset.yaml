@@ -8,7 +8,7 @@ metadata:
     project: roboshop
 
 spec:
-  replicas: 3                     # Desired number of Pods (ReplicaSet maintains this count)
+  replicas: 10                     # Desired number of Pods (ReplicaSet maintains this count)
 
   selector:                       # Defines how ReplicaSet finds the Pods it manages
     matchLabels:                  # Must EXACTLY match template labels
