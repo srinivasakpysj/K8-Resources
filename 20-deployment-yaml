@@ -1,0 +1,27 @@
+apiVersion: apps/v1                # Correct API group for Deployment
+kind: Deployment                  # Deployment manages ReplicaSets and enables rolling updates
+
+metadata:
+  name: nginx                     # Name of the Deployment
+  labels:                         # Labels for identifying the Deployment object
+    purpose: dp-demo
+    project: roboshop
+
+spec:
+  replicas: 4                     # Desired number of Pods (managed via ReplicaSet created by Deployment)
+
+  selector:                       # Defines how Deployment identifies Pods (via ReplicaSet)
+    matchLabels:                  # Must EXACTLY match template labels
+      purpose: dp-demo
+      project: roboshop
+
+  template:                       # Pod template (used to create Pods via ReplicaSet)
+    metadata:
+      labels:                     # Labels assigned to Pods
+        purpose: dp-demo          # Must match selector.matchLabels
+        project: roboshop
+
+    spec:
+      containers:
+      - name: nginx               # Container name
+        image: nginx:trixie-perl  # Specific nginx image version (Debian trixie + perl support)
