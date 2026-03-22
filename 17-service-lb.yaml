@@ -1,0 +1,20 @@
+apiVersion: v1                      # Core Kubernetes API version
+kind: Service                       # Resource type: Service
+
+metadata:
+  name: nginx-lb                    # Name of the Service (used as DNS inside cluster)
+
+spec:
+  type: LoadBalancer                # Exposes Service externally via cloud provider load balancer
+
+  selector:                         # Matches Pods using labels
+    project: roboshop               # Must match Pod label
+    component: frontend             # Must match Pod label
+    environment: dev                # Must match Pod label
+    purpose: node-port              # Pod MUST include this label OR no traffic will route
+
+  ports:
+  - protocol: TCP                   # Network protocol
+    port: 80                        # Service port (external + cluster access)
+    targetPort: 80                  # Container port inside Pod
+    # nodePort: 30007               # Optional: underlying NodePort (auto-assigned if not specified)
